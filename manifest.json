@@ -1,0 +1,31 @@
+{
+    "manifest_version": 2,
+    "name": "Toggle page images",
+    "short_name": "ImageToggle",
+    "description": "This extension toggles images in the page",
+    "version": "0.1",
+    "author": "Rajendra Patil",
+    "icons": {
+        "128": "images/icon.png",
+        "48": "images/icon48.png",
+        "16": "images/icon16.png"
+    },
+    "browser_action": {
+        "default_icon": "images/icon.png",
+        "default_name": "Block/Unblock Images"
+    },
+    "permissions": [
+        "activeTab",
+        "tabs",
+        "notifications",
+        "http://*/",
+        "https://*/"
+    ],
+    "background": {
+        "scripts": ["scripts/background.js"]
+    },
+    "content_scripts": [{
+        "matches": ["http://*/*", "https://*/*"],
+        "js": ["scripts/imageToggle.js"]
+    }]
+}
