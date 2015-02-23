@@ -11,7 +11,7 @@ This is my try at building one such simple, one click chrome extension to toggle
 
 # Try it out
 
-Here's the early version if you want to try it out. 
+Here's the early version if you'd like to try it out. 
 
 **http://rawgit.com/rpatil26/chrome-image-toggle/master/image-toggle.crx**
 
