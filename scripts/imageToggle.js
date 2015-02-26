@@ -28,8 +28,9 @@ rpatil.ImageToggle = {
         imgs.forEach(function(img) {
             src = img.getAttribute(me.ATTR_IMG_SRC);
             if (src) {
-                img.setAttribute(me.ATTR_BACKUP_SRC, src);
-                img.removeAttribute(me.ATTR_IMG_SRC);
+                img.setAttribute(me.ATTR_BACKUP_SRC, "_toggled");
+                img.style.visibility = "hidden";
+                //img.removeAttribute(me.ATTR_IMG_SRC);
             }
         });
         elements = Array.prototype.splice.call(document.getElementsByTagName("*"), 0);
@@ -48,12 +49,12 @@ rpatil.ImageToggle = {
         var imgs = Array.prototype.splice.call(document.getElementsByTagName("img"), 0),
             elements,
             currStyle,
-            src,
+            toggled,
             me = this;
         imgs.forEach(function(img) {
-            src = img.getAttribute(me.ATTR_BACKUP_SRC);
-            if (src) {
-                img.setAttribute(me.ATTR_IMG_SRC, src);
+            toggled = img.getAttribute(me.ATTR_BACKUP_SRC);
+            if (toggled) {
+                img.style.visibility = "";
                 img.removeAttribute(me.ATTR_BACKUP_SRC);
             }
         });
@@ -92,6 +93,11 @@ rpatil.ImageToggle = {
 
 //Show images if those were hidden earlier
 rpatil.ImageToggle.showImages();
+
+//Notify extension about the state
+chrome.runtime.sendMessage({
+    hidden: rpatil.ImageToggle.hidden
+}, function(response) {});
 
 //Listen for message from an extension
 chrome.runtime.onMessage.addListener(

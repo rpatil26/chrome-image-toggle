@@ -38,6 +38,17 @@ chrome.tabs.onActivated.addListener(function(selectInfo) {
     });
 });
 
+chrome.runtime.onMessage.addListener(
+  function(request, sender, sendResponse) {
+    if (sender.tab && sender.tab.selected || sender.tab.highlighted) {
+        hidden = request && request.hidden;
+        chrome.browserAction.setBadgeText({
+            text: hidden ? "off" : ""
+        });    
+    }
+  });
+
+
 //Block/Unblock on click of an icon
 chrome.browserAction.onClicked.addListener(function(tab) { //Fired when User Clicks ICON
     chrome.tabs.sendMessage(tab.id, {
