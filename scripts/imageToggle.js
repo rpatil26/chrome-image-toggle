@@ -19,7 +19,7 @@ rpatil.ImageToggle = {
     ATTR_BACKUP_BGIMG: "data-backup-bgImg",
     ATTR_IMG_SRC: "src",
     hideImages: function() {
-        var imgs = Array.prototype.splice.call(document.getElementsByTagName("img"), 0),
+        var imgs = Array.prototype.slice.call(document.getElementsByTagName("img")),
             elements,
             currStyle,
             src,
@@ -33,7 +33,7 @@ rpatil.ImageToggle = {
                 //img.removeAttribute(me.ATTR_IMG_SRC);
             }
         });
-        elements = Array.prototype.splice.call(document.getElementsByTagName("*"), 0);
+        elements = Array.prototype.slice.call(document.getElementsByTagName("*"));
         elements.forEach(function(elem) {
             if (elem) {
                 bgImg = me.getBgImageStyle(elem);
@@ -46,7 +46,7 @@ rpatil.ImageToggle = {
         this.hidden = true;
     },
     showImages: function() {
-        var imgs = Array.prototype.splice.call(document.getElementsByTagName("img"), 0),
+        var imgs = Array.prototype.slice.call(document.getElementsByTagName("img")),
             elements,
             currStyle,
             toggled,
@@ -58,7 +58,7 @@ rpatil.ImageToggle = {
                 img.removeAttribute(me.ATTR_BACKUP_SRC);
             }
         });
-        elements = Array.prototype.splice.call(document.getElementsByTagName("*"), 0);
+        elements = Array.prototype.slice.call(document.getElementsByTagName("*"));
         var me = this,
             bgImg;
         elements.forEach(function(elem) {
