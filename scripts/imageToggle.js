@@ -30,6 +30,7 @@ rpatil.ImageToggle = {
             if (src) {
                 img.setAttribute(me.ATTR_BACKUP_SRC, "_toggled");
                 img.style.visibility = "hidden";
+                img.style.opacity = 0;
                 //img.removeAttribute(me.ATTR_IMG_SRC);
             }
         });
@@ -55,6 +56,7 @@ rpatil.ImageToggle = {
             toggled = img.getAttribute(me.ATTR_BACKUP_SRC);
             if (toggled) {
                 img.style.visibility = "";
+                img.style.opacity = "";
                 img.removeAttribute(me.ATTR_BACKUP_SRC);
             }
         });
