@@ -51,7 +51,8 @@ rpatil.ImageToggle = {
             elements,
             currStyle,
             toggled,
-            me = this;
+            me = this,
+            bgImg;
         imgs.forEach(function(img) {
             toggled = img.getAttribute(me.ATTR_BACKUP_SRC);
             if (toggled) {
@@ -61,8 +62,6 @@ rpatil.ImageToggle = {
             }
         });
         elements = [].slice.call(document.getElementsByTagName("*"));
-        var me = this,
-            bgImg;
         elements.forEach(function(elem) {
             if (elem) {
                 bgImg = elem.getAttribute(me.ATTR_BACKUP_BGIMG);
@@ -93,21 +92,21 @@ rpatil.ImageToggle = {
 
 };
 
-//Show images if those were hidden earlier
+// Show images if those were hidden earlier
 rpatil.ImageToggle.showImages();
 
-//Notify extension about the state
+// Notify extension about the state
 chrome.runtime.sendMessage({
     hidden: rpatil.ImageToggle.hidden
 }, function(response) {});
 
-//Listen for message from an extension
+// Listen for message from an extension
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
         if (request.toggle) {
             rpatil.ImageToggle.toggleImages();
         }
-        //retutn state always
+        // Always return state
         sendResponse({
             hidden: rpatil.ImageToggle.hidden
         });
